@@ -30,7 +30,6 @@ jobs:
         pip install httpx pytest
 
     # 4. Jalankan Test
-    # Kita set environment variable dummy agar code tidak error saat baca config
     - name: Run Tests
       env:
         OPENAI_API_KEY: "dummy" 
@@ -39,5 +38,6 @@ jobs:
         LANGFUSE_PUBLIC_KEY: "dummy"
         LANGFUSE_SECRET_KEY: "dummy"
         LANGFUSE_HOST: "https://cloud.langfuse.com"
+        PYTHONPATH: .
       run: |
         pytest tests/
