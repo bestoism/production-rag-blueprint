@@ -13,3 +13,6 @@ env/
 
 .DS_Store
 Thumbs.db
+
+# Local Vector DB Data
+qdrant_data/

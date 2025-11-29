@@ -7,6 +7,8 @@ from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from app.core.config import settings
 
+from langfuse.langchain import CallbackHandler
+
 def get_retriever():
     embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
     client = QdrantClient(path=settings.QDRANT_PATH)
@@ -15,7 +17,6 @@ def get_retriever():
         collection_name=settings.QDRANT_COLLECTION_NAME,
         embedding=embeddings,
     )
-    # Kita set k=6 (Sweet spot antara kecepatan & konteks)
     return vector_store.as_retriever(search_kwargs={"k": 6})
 
 def get_llm():
@@ -31,6 +32,11 @@ def get_llm():
 async def query_rag(question: str):
     retriever = get_retriever()
     llm = get_llm()
+    
+    # PERBAIKAN:
+    # Cukup panggil kosong saja. 
+    # Dia otomatis baca .env (LANGFUSE_SECRET_KEY, dll)
+    langfuse_handler = CallbackHandler() 
     
     template = """You are a helpful HR Assistant reviewing a CV/Document. 
     Answer the user's question based on the context below. 
@@ -55,10 +61,11 @@ async def query_rag(question: str):
         | StrOutputParser()
     )
     
-    response = await chain.ainvoke(question)
+    response = await chain.ainvoke(
+        question,
+        config={"callbacks": [langfuse_handler]} 
+    )
     
-    # Ambil metadata source untuk referensi
-    # Kita panggil retriever terpisah untuk mendapatkan list dokumennya
     source_docs = retriever.invoke(question)
     sources = [doc.metadata.get("source", "Unknown") for doc in source_docs]
     

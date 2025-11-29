@@ -14,6 +14,11 @@ class Settings:
     OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY")
     GOOGLE_API_KEY: str = os.getenv("GOOGLE_API_KEY")
     
+    # Langfuse Config
+    LANGFUSE_SECRET_KEY: str = os.getenv("LANGFUSE_SECRET_KEY")
+    LANGFUSE_PUBLIC_KEY: str = os.getenv("LANGFUSE_PUBLIC_KEY")
+    LANGFUSE_HOST: str = os.getenv("LANGFUSE_HOST", "https://cloud.langfuse.com")
+    
     # Qdrant Path (Sekarang pakai Absolute Path)
     QDRANT_PATH: str = os.path.join(BASE_DIR, "qdrant_data")
     
