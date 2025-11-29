@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.core.config import settings
-from app.routers import upload
+from app.routers import upload, rag 
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -11,13 +11,11 @@ app = FastAPI(
 
 @app.get("/")
 def health_check():
-    return {
-        "status": "healthy",
-        "project": settings.PROJECT_NAME
-    }
+    return {"status": "healthy", "project": settings.PROJECT_NAME}
 
-# --- Register Router ---
+# Register Routers
 app.include_router(upload.router, prefix=settings.API_V1_STR + "/documents", tags=["Documents"])
+app.include_router(rag.router, prefix=settings.API_V1_STR + "/rag", tags=["RAG"]) # <--- Baris Baru
 
 if __name__ == "__main__":
     import uvicorn
