@@ -1,3 +1,14 @@
+---
+title: RAG Insight Pipeline
+emoji: 🧠
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+pinned: false
+app_port: 7860
+license: apache-2.0
+---
+
 # 🚀 RAG Insight Pipeline
 
 > **An Enterprise-Grade GenAI Architecture: Scalable RAG Pipeline featuring Hybrid Vector Search, Full-Stack MLOps Observability, and Automated Evaluation Loops.**
