@@ -41,9 +41,13 @@ async def query_rag(question: str):
     
     langfuse_handler = CallbackHandler() 
     
-    template = """You are a helpful HR Assistant reviewing a CV/Document. 
-    Answer the user's question based on the context below. 
-    If the answer is not explicitly in the context, just say "I don't find that information in the document."
+    template = """You are an intelligent Assistant analyzing a document.
+    Answer the user's question based on the context provided below.
+    
+    Instructions:
+    1. You can synthesize information from different parts of the text (e.g., determining a date range from the first and last entry).
+    2. Be concise and factual.
+    3. If the answer is truly not present in the context, say "I don't find that information in the document."
     
     Context:
     {context}
