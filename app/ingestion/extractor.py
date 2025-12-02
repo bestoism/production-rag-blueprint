@@ -1,15 +1,17 @@
 from typing import Optional
 from io import BytesIO
 from pypdf import PdfReader
+# IMPORT LOGGER KITA
+from app.monitoring.logger import logger 
 
 def extract_text_from_pdf(file_content: bytes) -> Optional[str]:
     try:
         pdf_reader = PdfReader(BytesIO(file_content))
         text = ""
         
-        # Cek apakah PDF terenkripsi
         if pdf_reader.is_encrypted:
-            print("❌ Error: PDF is encrypted/password protected.")
+            # GANTI print JADI logger.error
+            logger.error("PDF is encrypted/password protected.")
             return None
 
         count = 0
@@ -19,24 +21,27 @@ def extract_text_from_pdf(file_content: bytes) -> Optional[str]:
                 text += page_text + "\n"
                 count += 1
         
-        # Debugging: Cek apakah teks kosong
         if not text.strip():
-            print("⚠️ Warning: PDF opened successfully but NO TEXT found. It might be a scanned image.")
+            # GANTI print JADI logger.warning
+            logger.warning("PDF opened successfully but NO TEXT found. Likely a scanned image.")
             return None
             
-        print(f"✅ Extracted text from {count} pages.")
+        # GANTI print JADI logger.info
+        logger.info(f"✅ Successfully extracted text from {count} pages.")
         return text.strip()
     
     except Exception as e:
-        # Ini akan muncul di Logs Hugging Face
-        print(f"❌ CRITICAL ERROR in extraction: {e}")
+        # GANTI print JADI logger.critical (Error Parah)
+        logger.critical(f"🔥 CRITICAL ERROR in extraction: {e}")
         return None
 
 def extract_text_from_file(file_content: bytes, filename: str) -> Optional[str]:
+    logger.info(f"📂 Processing file: {filename}") # Log nama file
+    
     if filename.lower().endswith(".pdf"):
         return extract_text_from_pdf(file_content)
     elif filename.lower().endswith(".txt"):
         return file_content.decode("utf-8")
     else:
-        print(f"❌ Unsupported format: {filename}")
+        logger.error(f"❌ Unsupported format: {filename}")
         return None

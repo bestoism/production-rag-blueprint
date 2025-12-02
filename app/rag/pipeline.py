@@ -8,6 +8,9 @@ from langchain_core.output_parsers import StrOutputParser
 from app.core.config import settings
 from langfuse.langchain import CallbackHandler
 from app.core.database import get_qdrant_client
+from langchain_core.messages import HumanMessage, AIMessage
+from langchain_core.prompts import MessagesPlaceholder
+
 
 # --- FIX: GLOBAL VARIABLE ---
 # Kita simpan koneksi database di sini supaya tidak dibuka-tutup terus
