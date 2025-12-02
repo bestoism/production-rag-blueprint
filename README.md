@@ -37,6 +37,32 @@ Engineered to be modular, it allows users to upload complex PDF documents, autom
 
 ---
 
+## 📂 Project Structure
+
+The project follows a **Modular Monolith** architecture to ensure maintainability and scalability.
+
+```text
+rag-insight-pipeline/
+├── .github/workflows/   # CI/CD Pipelines (GitHub Actions)
+├── app/
+│   ├── core/            # Configuration & Database connections
+│   ├── evaluation/      # RAGAS Evaluation Logic & Manager
+│   ├── ingestion/       # ETL Pipeline (Extractor -> Chunker -> Embedder)
+│   ├── monitoring/      # Structured Logging (Loguru) configuration
+│   ├── rag/             # Core RAG Logic (Retriever + LLM Chain)
+│   ├── routers/         # FastAPI Routes (Endpoints)
+│   └── main.py          # Application Entry Point
+├── docker/              # Docker Compose orchestration files
+├── frontend/            # Streamlit User Interface
+├── scripts/             # Utility scripts (e.g., run_eval.py)
+├── tests/               # Unit tests (Pytest)
+├── .env.example         # Environment variables template
+├── Dockerfile           # Production Docker build instruction
+└── requirements.txt     # Project dependencies
+```
+
+---
+
 ## 🛠 Tech Stack
 
 | Component | Technology | Description |
@@ -83,8 +109,8 @@ graph TD
 
 ## 🚀 Live Demo
 
-*   **API / Swagger UI**: [View API Docs](https://bestoism-rag-insight-pipeline.hf.space/docs)
-    *(The backend is deployed on Hugging Face Spaces)*
+*   **💻 Frontend UI (Streamlit)**: [Chat Interface Demo](https://rag-insight-pipeline.streamlit.app)
+*   **⚙️ Backend API (Swagger)**: [API Documentation](https://bestoism-rag-insight-pipeline.hf.space/docs)
 
 ---
 
@@ -111,7 +137,7 @@ pip install -r requirements.txt
 ```
 
 ### 4. Configure Environment Variables
-Create a `.env` file in the root directory:
+Create a `.env` file in the root directory (copy from `.env.example`):
 ```ini
 # Project Settings
 PROJECT_NAME="RAG Insight Pipeline"
@@ -148,22 +174,6 @@ streamlit run frontend/app.py
 
 ---
 
-## 📡 API Endpoints
-
-### 1. Ingest Document
-Uploads a PDF, extracts text, chunks it, and indexes vectors.
-*   **URL**: `POST /api/v1/documents/ingest`
-
-### 2. RAG Query
-Asks a question based on the indexed knowledge base.
-*   **URL**: `POST /api/v1/rag/query`
-
-### 3. Reset Memory
-Clears the vector database (wipes all memory).
-*   **URL**: `DELETE /api/v1/documents/reset`
-
----
-
 ## 🧪 Evaluation & Testing
 
 ### Running Unit Tests (CI/CD)
@@ -184,12 +194,11 @@ python scripts/run_eval.py
 
 The application is containerized using Docker and optimized for Hugging Face Spaces (Port 7860).
 
+### Local Orchestration (Docker Compose)
+To run both the API and a local Qdrant instance instantly:
 ```bash
-# Build Locally
-docker build -t rag-pipeline .
-
-# Run Container
-docker run -p 7860:7860 --env-file .env rag-pipeline
+cd docker
+docker-compose up
 ```
 
 ---
