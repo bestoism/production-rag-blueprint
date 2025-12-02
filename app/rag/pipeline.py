@@ -23,7 +23,7 @@ def get_retriever():
         collection_name=settings.QDRANT_COLLECTION_NAME,
         embedding=embeddings,
     )
-    return vector_store.as_retriever(search_kwargs={"k": 6})
+    return vector_store.as_retriever(search_kwargs={"k": 20})
 
 def get_llm():
     if not settings.GOOGLE_API_KEY:
