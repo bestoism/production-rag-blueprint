@@ -1,6 +1,6 @@
-# Contributing to RAG Insight Pipeline
+# Contributing to Production RAG Blueprint
 
-Thank you for your interest in contributing to **RAG Insight Pipeline**! 🚀
+Thank you for your interest in contributing to **Production RAG Blueprint**! 🚀
 This document provides guidelines for setting up the development environment and submitting contributions.
 
 ## 🛠 Development Setup
@@ -15,8 +15,8 @@ To ensure consistency, please follow these steps to set up your local environmen
 ### 2. Installation
 ```bash
 # Clone the repository
-git clone https://github.com/bestoism/rag-insight-pipeline.git
-cd rag-insight-pipeline
+git clone https://github.com/bestoism/production-rag-blueprint.git
+cd production-rag-blueprint
 
 # Create Virtual Environment
 python -m venv venv
