@@ -1,5 +1,5 @@
 ---
-title: RAG Insight Pipeline
+title: Production RAG Blueprint
 emoji: 🧠
 colorFrom: blue
 colorTo: indigo
@@ -9,19 +9,19 @@ app_port: 7860
 license: apache-2.0
 ---
 
-# 🚀 RAG Insight Pipeline
+# 🚀 Production RAG Blueprint
 
 > **An Enterprise-Grade GenAI Architecture: Scalable RAG Pipeline featuring Hybrid Vector Search, Full-Stack MLOps Observability, and Automated Evaluation Loops.**
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Production-green.svg)
 ![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)
-![CI/CD](https://github.com/bestoism/rag-insight-pipeline/actions/workflows/ci.yml/badge.svg)
+![CI/CD](https://github.com/bestoismproduction-rag-blueprint/actions/workflows/ci.yml/badge.svg)
 ![Qdrant](https://img.shields.io/badge/VectorDB-Qdrant-red.svg)
 
 ## 📖 Overview
 
-**RAG Insight Pipeline** goes beyond standard RAG tutorials by implementing **MLOps best practices** for production environments. It addresses critical challenges in Generative AI such as **hallucination monitoring**, **retrieval accuracy**, and **deployment scalability**.
+**Production RAG Blueprint** goes beyond standard RAG tutorials by implementing **MLOps best practices** for production environments. It addresses critical challenges in Generative AI such as **hallucination monitoring**, **retrieval accuracy**, and **deployment scalability**.
 
 Engineered to be modular, it allows users to upload complex PDF documents, automatically index them into a hybrid vector store, and perform intelligent Q&A using **Google Gemini 2.0 Flash** with strictly grounded responses.
 
@@ -42,7 +42,7 @@ Engineered to be modular, it allows users to upload complex PDF documents, autom
 The project follows a **Modular Monolith** architecture to ensure maintainability and scalability.
 
 ```text
-rag-insight-pipeline/
+production-rag-blueprint/
 ├── .github/workflows/   # CI/CD Pipelines (GitHub Actions)
 ├── app/
 │   ├── core/            # Configuration & Database connections
@@ -109,7 +109,7 @@ graph TD
 
 ## 🚀 Live Demo
 
-*   **💻 Frontend UI (Streamlit)**: [Chat Interface Demo](https://rag-insight-pipeline.streamlit.app)
+*   **💻 Frontend UI (Streamlit)**: [Chat Interface Demo](https://production-rag-blueprint.streamlit.app)
 *   **⚙️ Backend API (Swagger)**: [API Documentation](https://bestoism-rag-insight-pipeline.hf.space/docs)
 
 ---
